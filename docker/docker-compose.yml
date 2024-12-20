@@ -1,0 +1,14 @@
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: usr_urben
+      MONGO_INITDB_ROOT_PASSWORD: urben
+    volumes:
+      - urben-db:/data/db
+
+volumes:
+  urben-db:
