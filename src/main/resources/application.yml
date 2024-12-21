@@ -1,1 +1,31 @@
-spring.application.name=UrbenCrawler
+spring:
+  application:
+    name: UrbenCrawler
+  data:
+    mongodb:
+      host: ${MONGODB_HOST:localhost}
+      port: ${MONGODB_PORT:27017}
+      authentication-database: admin
+      username: ${MONGODB_USERNAME:usr_urben}
+      password: ${MONGODB_PASSWORD:urben}
+      database: urben-db
+
+scheduler:
+  cron: ${CRON_EXPRESSION:0 * * * * *} # Every minute
+
+urben:
+  url: ${URBEN_URL}
+  username: ${URBEN_USERNAME}
+  password: ${URBEN_PASSWORD}
+  endpoints:
+    login: ${URBEN_ENDPOINT_LOGIN}
+    currentPercentage: ${URBEN_ENDPOINT_CURRENT_PERCENTAGE}
+    pictures: ${URBEN_ENDPOINT_PICTURES}
+
+easywhatsapp:
+  url: ${EASYWHATSAPP_URL}
+  token: ${EASYWHATSAPP_TOKEN}
+  phone: ${EASYWHATSAPP_PHONE}
+  endpoints:
+    text-message: ${EASYWHATSAPP_ENDPOINT_TEXT_MESSAGE}
+    image-message: ${EASYWHATSAPP_ENDPOINT_IMAGE_MESSAGE}
