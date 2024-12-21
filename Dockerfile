@@ -1,5 +1,8 @@
 FROM gradle:jdk21-alpine AS build
 ADD . /build
+
+RUN chmod +x /build/gradlew
+
 RUN cd /build && ./gradlew clean bootJar -x test
 
 FROM eclipse-temurin:21-jdk-alpine
