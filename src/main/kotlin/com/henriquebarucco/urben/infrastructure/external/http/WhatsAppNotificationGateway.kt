@@ -4,6 +4,7 @@ import com.henriquebarucco.urben.application.notification.NotificationGateway
 import com.henriquebarucco.urben.infrastructure.external.http.easywhatsapp.EasyWhatsAppClient
 import com.henriquebarucco.urben.infrastructure.external.http.easywhatsapp.EasyWhatsAppCustom
 import com.henriquebarucco.urben.infrastructure.external.http.easywhatsapp.models.SendTextMessageRequest
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
@@ -19,6 +20,8 @@ class WhatsAppNotificationGateway(
     @Value("\${easywhatsapp.phone}")
     private val phone: String,
 ) : NotificationGateway {
+    private val log = LoggerFactory.getLogger(WhatsAppNotificationGateway::class.java)
+
     override fun send(message: String) {
         val request =
             SendTextMessageRequest(
@@ -28,6 +31,8 @@ class WhatsAppNotificationGateway(
             )
 
         this.easyWhatsAppClient.sendMessage(request)
+
+        log.info("Message sent to WhatsApp")
     }
 
     override fun send(
@@ -42,5 +47,7 @@ class WhatsAppNotificationGateway(
             photo = photo,
             name = name,
         )
+
+        log.info("Photo sent to WhatsApp")
     }
 }
