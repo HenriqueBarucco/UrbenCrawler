@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration
 class UrbenUseCases(
     private val currentPercentageGateway: CurrentPercentageGateway,
     private val percentageRepository: PercentageRepository,
-    private val notificationGateway: NotificationGateway,
+    private val notificationGateways: List<NotificationGateway>,
     private val picturesGateway: PicturesGateway,
     private val pictureRepository: PictureRepository,
 ) {
@@ -25,7 +25,7 @@ class UrbenUseCases(
         DefaultVerifyUrbenStatusUseCase(
             currentPercentageGateway = currentPercentageGateway,
             percentageRepository = percentageRepository,
-            notificationGateway = notificationGateway,
+            notificationGateway = notificationGateways,
         )
 
     @Bean
@@ -33,6 +33,6 @@ class UrbenUseCases(
         DefaultVerifyUrbenNewPicturesUseCase(
             picturesGateway = picturesGateway,
             pictureRepository = pictureRepository,
-            notificationGateway = notificationGateway,
+            notificationGateway = notificationGateways,
         )
 }

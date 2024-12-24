@@ -17,6 +17,9 @@ java {
 
 repositories {
     mavenCentral()
+
+    maven("https://repo.kord.dev/snapshots")
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
@@ -29,6 +32,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    implementation("dev.kord:kord-core:0.15.0")
 }
 
 kotlin {

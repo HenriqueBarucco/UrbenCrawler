@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 class WhatsAppNotificationGateway(
     private val easyWhatsAppClient: EasyWhatsAppClient,
     @Value("\${easywhatsapp.url}")
-    private val url: String,
+    private val easyWhatsAppUrl: String,
     @Value("\${easywhatsapp.endpoints.image-message}")
     private val imageEndpoint: String,
     @Value("\${easywhatsapp.token}")
@@ -37,9 +37,10 @@ class WhatsAppNotificationGateway(
 
     override fun send(
         photo: ByteArray,
+        url: String,
         name: String,
     ) {
-        val client = EasyWhatsAppCustom(url, imageEndpoint)
+        val client = EasyWhatsAppCustom(easyWhatsAppUrl, imageEndpoint)
 
         client.sendPhoto(
             token = this.token,

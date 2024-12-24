@@ -29,3 +29,7 @@ easywhatsapp:
   endpoints:
     text-message: ${EASYWHATSAPP_ENDPOINT_TEXT_MESSAGE}
     image-message: ${EASYWHATSAPP_ENDPOINT_IMAGE_MESSAGE}
+
+discord:
+  token: ${DISCORD_TOKEN}
+  channelId: ${DISCORD_CHANNEL_ID}

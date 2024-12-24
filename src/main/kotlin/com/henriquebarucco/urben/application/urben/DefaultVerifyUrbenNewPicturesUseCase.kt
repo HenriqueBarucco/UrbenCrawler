@@ -10,7 +10,7 @@ import java.time.Instant
 class DefaultVerifyUrbenNewPicturesUseCase(
     private val picturesGateway: PicturesGateway,
     private val pictureRepository: PictureRepository,
-    private val notificationGateway: NotificationGateway,
+    private val notificationGateway: List<NotificationGateway>,
 ) : VerifyUrbenNewPicturesUseCase {
     override fun execute(token: String) {
         val pictures = this.picturesGateway.get(token)
@@ -34,6 +34,7 @@ class DefaultVerifyUrbenNewPicturesUseCase(
 
     private fun notify(picture: Picture) {
         val photo = PictureDownloader.download(picture.url)
-        this.notificationGateway.send(photo, picture.name)
+
+        this.notificationGateway.map { it.send(photo, picture.url, picture.name) }
     }
 }

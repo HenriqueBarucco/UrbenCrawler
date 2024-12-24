@@ -9,7 +9,7 @@ import com.henriquebarucco.urben.domain.percentage.gateway.CurrentPercentageGate
 class DefaultVerifyUrbenStatusUseCase(
     private val currentPercentageGateway: CurrentPercentageGateway,
     private val percentageRepository: PercentageRepository,
-    private val notificationGateway: NotificationGateway,
+    private val notificationGateway: List<NotificationGateway>,
 ) : VerifyUrbenStatusUseCase {
     override fun execute(token: String) {
         val percentage = this.percentageRepository.get()
@@ -30,6 +30,6 @@ class DefaultVerifyUrbenStatusUseCase(
     }
 
     private fun notify(currentPercentage: Double) {
-        this.notificationGateway.send(String.format(PERCENTAGE_CHANGED, currentPercentage))
+        this.notificationGateway.map { it.send(String.format(PERCENTAGE_CHANGED, currentPercentage)) }
     }
 }

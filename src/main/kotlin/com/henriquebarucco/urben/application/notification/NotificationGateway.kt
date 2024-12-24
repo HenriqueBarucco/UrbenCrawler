@@ -5,6 +5,7 @@ interface NotificationGateway {
 
     fun send(
         photo: ByteArray,
+        url: String,
         name: String,
     )
 }
